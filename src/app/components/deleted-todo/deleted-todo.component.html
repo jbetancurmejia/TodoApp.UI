@@ -1,0 +1,33 @@
+<p>deleted-todo works!</p>
+<div class="container">
+  <div class="row">
+    <h1>Add Todo</h1>
+  </div>
+  <div class="row">
+    <h1>My todos</h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Description</th>
+          <th scope="col">Created Date</th>
+          <th scope="col">Completed ?</th>
+          <th scope="col">Deleted Date</th>
+          <th scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let todo of todos">
+          <th [class.stroke]="todo.isCompleted">{{ todo.description }}</th>
+          <td>{{ todo.createdDate | date : "MM/dd/yyy hh:mm a" }}</td>
+          <td>  <input type="checkbox" name="isCompleted" [checked]="todo.isCompleted" disabled/></td>
+          <td>{{ todo.deletedDate| date : "MM/dd/yyy hh:mm a" }}</td>
+          <td>
+            <button class="btn btn-danger" (click)="restoreTodo(todo.id, todo)">
+              <i class="bi bi-trash"></i> restore
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
